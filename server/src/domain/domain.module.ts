@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { HealthModule } from './health/health.module';
+import { SystemHealthModule } from './system-health/system-health.module';
 
 @Module({
-  imports: [HealthModule],
+  imports: [SystemHealthModule],
 })
 export class DomainModule {}
