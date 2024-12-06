@@ -32,7 +32,7 @@ interface MemoryUsage {
 // const THRESHOLD = 150 * 1024; // 150MB
 
 @Injectable()
-export class SystemHealthService {
+export class SystemService {
   constructor(private health: HealthCheckService) {}
 
   /**
@@ -50,7 +50,7 @@ export class SystemHealthService {
             uptime: `${process.uptime()}s`,
           },
         });
-      });
+      }, 1);
     });
   }
 
@@ -83,7 +83,7 @@ export class SystemHealthService {
             rss,
           },
         });
-      });
+      }, 1);
     });
   }
 
