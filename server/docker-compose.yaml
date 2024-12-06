@@ -1,0 +1,16 @@
+services:
+  nestjs-811-app:
+    container_name: k8s-011y-server
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: application
+    image: k8s-o117:v1.0.0
+    command: npm run start:profile
+    environment:
+      - PORT=3000
+      - NEST_DEBUG=true
+    ports:
+      - 3000:3000
+    volumes:
+      - ./src:/usr/app/src
