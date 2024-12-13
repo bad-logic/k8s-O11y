@@ -3,9 +3,11 @@ services:
     container_name: k8s-011y-server
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: DockerfileEbpf
       target: application
-    image: k8s-o117:v1.0.0
+    image: k8s-o11y:v1.0.0
+    # privileged: true
+    # pid: host
     command: npm run start:profile
     environment:
       - PORT=3000
@@ -13,4 +15,4 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./src:/usr/app/src
+      - ./src:/usr/app/src:ro
