@@ -13,11 +13,11 @@ describe('Testing @Get() Decorator', () => {
         this.secret = val;
       }
     }
-    it('it should return the value of original key while accessing the alias key', () => {
+    it('should return the value of original key while accessing the alias key', () => {
       expect(new Test(9).exposed).toEqual(9);
     });
 
-    it('it should through error on trying to set the alias key', () => {
+    it('should through error on trying to set the alias key', () => {
       const o = new Test(9);
       try {
         o.exposed = 89;
@@ -41,11 +41,11 @@ describe('Testing @Get() Decorator', () => {
       }
     }
 
-    it('it should return the value of original key while accessing the alias key', () => {
+    it('should return the value of original key while accessing the alias key', () => {
       expect(new Test(9).exposed).toEqual(9);
     });
 
-    it('it should succeed on trying to set the mapped value through alias key', () => {
+    it('should succeed on trying to set the mapped value through alias key', () => {
       const o = new Test(9);
       expect(o.exposed).toEqual(9);
       o.exposed = 89;

@@ -18,7 +18,7 @@ class Test{
 
     // will add the following function to the class
     // public set exposed(val){
-    //     return this.secret=val;
+    //     this.secret = val;
     // }
 
 }

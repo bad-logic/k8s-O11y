@@ -14,23 +14,23 @@ describe('Testing @Set() Decorator', () => {
       }
     }
 
-    it('it should set the original key', () => {
+    it('should set the original key', () => {
       const o = new Test(9);
       expect(o.secret).toEqual(9);
     });
 
-    it('it should change the value of the original key on update', () => {
+    it('should change the value of the original key on update', () => {
       const o = new Test(9);
       o.exposed = 99;
       expect(o.secret).toEqual(99);
     });
 
-    it('it should return undefined on accessing the alias key', () => {
+    it('should return undefined on accessing the alias key', () => {
       const o = new Test(9);
       expect(o.exposed).not.toBeDefined();
     });
 
-    it('it should return undefined on accessing the alias key after the update', () => {
+    it('should return undefined on accessing the alias key after the update', () => {
       const o = new Test(9);
       o.exposed = 100;
       expect(o.exposed).not.toBeDefined();
@@ -50,23 +50,23 @@ describe('Testing @Set() Decorator', () => {
       }
     }
 
-    it('it should set the original key', () => {
+    it('should set the original key', () => {
       const o = new Test(9);
       expect(o.secret).toEqual(9);
     });
 
-    it('it should change the value of the original key on update', () => {
+    it('should change the value of the original key on update', () => {
       const o = new Test(9);
       o.exposed = 99;
       expect(o.secret).toEqual(99);
     });
 
-    it('it should return the original key value on accessing the alias key', () => {
+    it('should return the original key value on accessing the alias key', () => {
       const o = new Test(9);
       expect(o.exposed).toEqual(9);
     });
 
-    it('it should return the original key value on accessing the alias key after the update', () => {
+    it('should return the original key value on accessing the alias key after the update', () => {
       const o = new Test(9);
       o.exposed = 100;
       expect(o.exposed).toEqual(100);
