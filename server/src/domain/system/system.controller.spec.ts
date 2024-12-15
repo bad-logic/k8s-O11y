@@ -1,6 +1,5 @@
 import { Test } from '@nestjs/testing';
 import { SystemController } from './system.controller';
-import { TerminusModule } from '@nestjs/terminus';
 import { SystemService } from './system.service';
 
 describe('HealthController', () => {
@@ -8,7 +7,6 @@ describe('HealthController', () => {
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
-      imports: [TerminusModule],
       controllers: [SystemController],
       providers: [SystemService],
     }).compile();
@@ -22,7 +20,7 @@ describe('HealthController', () => {
   describe('health check', () => {
     it('should return ok status ', async () => {
       const result = await systemController.check();
-      expect(result.status).toEqual('ok');
+      expect(result.server.status).toEqual('OK');
     });
   });
 });
