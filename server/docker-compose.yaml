@@ -3,15 +3,14 @@ services:
     container_name: k8s-011y-server
     build:
       context: .
-      dockerfile: DockerfileEbpf
+      dockerfile: Dockerfile
       target: application
     image: k8s-o11y:v1.0.0
-    # privileged: true
-    # pid: host
     command: npm run start:profile
     environment:
       - PORT=3000
       - NEST_DEBUG=true
+      - NODE_ENV=production
     ports:
       - 3000:3000
     volumes:
