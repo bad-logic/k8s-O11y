@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigurationService } from './config.service';
 
-const CONFIG_SERVICE = {
+const configServiceFactory = {
   provide: ConfigurationService,
   useFactory: () => {
     const config = new ConfigurationService();
@@ -11,7 +11,7 @@ const CONFIG_SERVICE = {
 };
 
 @Module({
-  providers: [CONFIG_SERVICE],
-  exports: [CONFIG_SERVICE],
+  providers: [configServiceFactory],
+  exports: [configServiceFactory],
 })
 export class ConfigModule {}

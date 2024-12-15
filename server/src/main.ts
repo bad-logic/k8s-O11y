@@ -22,6 +22,6 @@ async function bootstrap() {
   //   }),
   // );
   app.useGlobalInterceptors(new WrapResponseInterceptor());
-  await app.listen(configService.config.port);
+  await app.listen(configService.port);
 }
 bootstrap();

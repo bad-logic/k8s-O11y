@@ -2,10 +2,18 @@ import { Injectable } from '@nestjs/common';
 import { EnvironmentVariables, DEFAULT_CONFIGS } from './default.config';
 import { validateSync } from 'class-validator';
 import { plainToInstance } from 'class-transformer';
+import { Getter } from '../decorators/getter.decorator';
 
 @Injectable()
 export class ConfigurationService {
-  config: EnvironmentVariables;
+  private config: EnvironmentVariables;
+
+  @Getter('config.port')
+  public port: number;
+
+  // public get port() {
+  //   return this.config.port;
+  // }
 
   constructor(data: EnvironmentVariables = DEFAULT_CONFIGS) {
     this.config = data;
@@ -28,6 +36,6 @@ export class ConfigurationService {
   }
 
   public loadFromEnvironment() {
-    this.parseEnvironment(process.env);
+    this.config = this.parseEnvironment(process.env);
   }
 }
