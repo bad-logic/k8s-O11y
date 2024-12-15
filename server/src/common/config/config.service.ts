@@ -2,14 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { EnvironmentVariables, DEFAULT_CONFIGS } from './default.config';
 import { validateSync } from 'class-validator';
 import { plainToInstance } from 'class-transformer';
-import { Getter } from '../decorators/getter.decorator';
+import { Get } from '../decorators/get.decorator';
 
 @Injectable()
 export class ConfigurationService {
   private config: EnvironmentVariables;
 
-  @Getter('config.port')
-  public port: number;
+  @Get('config.port')
+  public readonly port: number;
 
   // public get port() {
   //   return this.config.port;
