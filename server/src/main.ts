@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { WrapResponseInterceptor } from './common/interceptors/response.interceptor';
-import { ConfigurationService } from './common/config/config.service';
+// import { WrapResponseInterceptor } from './common/interceptors/response.interceptor';
+import { ConfigurationService } from './common/modules/config/config.service';
 import helmet from 'helmet';
 // import { ValidationPipe } from '@nestjs/common';
 
@@ -21,7 +21,7 @@ async function bootstrap() {
   //     },
   //   }),
   // );
-  app.useGlobalInterceptors(new WrapResponseInterceptor());
+  // app.useGlobalInterceptors(new WrapResponseInterceptor());
   await app.listen(configService.port);
 }
 bootstrap();
