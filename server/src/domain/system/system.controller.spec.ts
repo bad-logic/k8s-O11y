@@ -1,6 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { SystemController } from './system.controller';
 import { SystemService } from './system.service';
+import { AppLoggerService } from '../../common/modules/logger/Applogger.service';
 
 describe('HealthController', () => {
   let systemController: SystemController;
@@ -8,7 +9,17 @@ describe('HealthController', () => {
   beforeEach(async () => {
     const module = await Test.createTestingModule({
       controllers: [SystemController],
-      providers: [SystemService],
+      providers: [
+        SystemService,
+        {
+          provide: AppLoggerService,
+          useValue: {
+            log: jest.fn(),
+            error: jest.fn(),
+            info: jest.fn(),
+          },
+        },
+      ],
     }).compile();
     systemController = module.get<SystemController>(SystemController);
   });
