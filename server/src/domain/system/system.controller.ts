@@ -1,12 +1,17 @@
 import { Controller, Get } from '@nestjs/common';
 import { SystemService } from './system.service';
+import { AppLoggerService } from '../../common/modules/logger/Applogger.service';
 
 @Controller('system')
 export class SystemController {
-  constructor(private systemService: SystemService) {}
+  constructor(
+    private systemService: SystemService,
+    private loggerService: AppLoggerService,
+  ) {}
 
   @Get('/health')
   check() {
+    this.loggerService.log('hello from system controller');
     return this.systemService.getSystemStatus();
   }
 
