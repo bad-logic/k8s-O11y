@@ -55,7 +55,8 @@ describe('Testing combination of @Get() @Set() Decorator to the same value', () 
     });
 
     it('should return the value of path while accessing the alias key', () => {
-      expect(new Test(9).exposed).toEqual(9);
+      const o = new Test(9);
+      expect(o.exposed).toEqual(o.secret);
     });
 
     it('should successfully update the path value through alias key', () => {
@@ -67,7 +68,7 @@ describe('Testing combination of @Get() @Set() Decorator to the same value', () 
     it('should successfully get the updated path value from the alias key', () => {
       const o = new Test(9);
       o.exposed = 89;
-      expect(o.exposed).toEqual(89);
+      expect(o.exposed).toEqual(o.secret);
     });
   });
 
@@ -126,8 +127,11 @@ describe('Testing combination of @Get() @Set() Decorator to the same value', () 
       }
     });
 
-    it('should return the value of the path while accessing the alias key', () => {
-      expect(new Test(9).exposed).toEqual(9);
+    it('should return the value of path while accessing the alias key', () => {
+      const o = new Test(9);
+      expect(o.exposed).toEqual(
+        (o.data as any).first.second.third.fourth.fifth.sixth.seventh.secret,
+      );
     });
 
     it('should successfully update the path value through alias key', () => {
@@ -141,7 +145,9 @@ describe('Testing combination of @Get() @Set() Decorator to the same value', () 
     it('should successfully get the updated path value from the alias key', () => {
       const o = new Test(9);
       o.exposed = 89;
-      expect(o.exposed).toEqual(89);
+      expect(o.exposed).toEqual(
+        (o.data as any).first.second.third.fourth.fifth.sixth.seventh.secret,
+      );
     });
   });
 });

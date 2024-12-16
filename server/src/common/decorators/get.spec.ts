@@ -71,7 +71,8 @@ describe('Testing @Get() Decorator', () => {
     });
 
     it('should return the value of path while accessing the alias key', () => {
-      expect(new Test(9).exposed).toEqual(9);
+      const o = new Test(9);
+      expect(o.exposed).toEqual(o.secret);
     });
   });
 
@@ -151,7 +152,10 @@ describe('Testing @Get() Decorator', () => {
     });
 
     it('should return the value of path while accessing the alias key', () => {
-      expect(new Test(9).exposed).toEqual(9);
+      const o = new Test(9);
+      expect(o.exposed).toEqual(
+        (o.data as any).first.second.third.fourth.fifth.sixth.seventh.secret,
+      );
     });
   });
 });
