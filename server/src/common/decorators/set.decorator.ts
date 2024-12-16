@@ -40,8 +40,6 @@ export function Set(path: string) {
 
     Object.defineProperty(target, key, {
       set: function (val) {
-        // eslint-disable-next-line @typescript-eslint/no-this-alias
-        // let ref = this;
         const splitter = path.split('.');
         splitter.reduce((p, n, i) => {
           if (typeof p !== 'object') {
