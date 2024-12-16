@@ -33,16 +33,20 @@ export function Get(path: string) {
   return (target: any, key: string) => {
     if (path === key) {
       // will call itself and result in recursive calls
-      throw new Error(`Duplicate Identifier \'${path}\'`);
+      const err = new Error(`Duplicate Identifier \'${path}\'`);
+      err.name = 'DuplicateError';
+      throw err;
     }
 
     Object.defineProperty(target, key, {
       get: function () {
         return path.split('.').reduce((p, n) => {
-          if (p === undefined || p[n] === undefined) {
-            throw new Error(
+          if (typeof p !== 'object') {
+            const err = new Error(
               `path ${path} doesn't exists in ${this.constructor.name}`,
             );
+            err.name = 'PathNotFoundError';
+            throw err;
           }
           return p[n];
         }, this);
