@@ -22,14 +22,14 @@ describe('Testing @Set() Decorator', () => {
           @Set('value')
           public value: number;
         }
-        const o = new Test();
+        new Test();
       } catch (err) {
         expect(err).toBeInstanceOf(Error);
         expect(err.name).toEqual('DuplicateError');
       }
     });
 
-    it('should throw an PathNotFoundError on update if the path is not found', () => {
+    it('should throw PathNotFoundError on update if the path is not found', () => {
       const o = new Test(9);
       try {
         o.notfound = 56;
@@ -95,7 +95,7 @@ describe('Testing @Set() Decorator', () => {
       }
     }
 
-    it('should throw an PathNotFoundError on update if the path is not found', () => {
+    it('should throw PathNotFoundError on update if the path is not found', () => {
       const o = new Test(9);
       try {
         o.notfound = 56;
