@@ -1,13 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Get } from './get.decorator';
 import { Set } from './set.decorator';
 
-describe('Testing @Set() Decorator', () => {
+describe('Testing combination of @Get() @Set() Decorator to the same value', () => {
   describe('Testing with simple value', () => {
     class Test {
       public readonly secret;
 
+      @Get('secret')
       @Set('secret')
       public exposed: number;
 
+      @Get('secret.notfound')
       @Set('secret.notfound')
       public notfound: number;
 
@@ -19,6 +23,7 @@ describe('Testing @Set() Decorator', () => {
     it('should throw DuplicateError if the path and key are same', () => {
       try {
         class Test {
+          @Get('value')
           @Set('value')
           public value: number;
         }
@@ -26,6 +31,16 @@ describe('Testing @Set() Decorator', () => {
       } catch (err) {
         expect(err).toBeInstanceOf(Error);
         expect(err.name).toEqual('DuplicateError');
+      }
+    });
+
+    it('should throw PathNotFoundError while accessing invalid path', () => {
+      const o = new Test(9);
+      try {
+        const _ = o.notfound;
+      } catch (err) {
+        expect(err).toBeInstanceOf(Error);
+        expect(err.name).toBe('PathNotFoundError');
       }
     });
 
@@ -39,26 +54,20 @@ describe('Testing @Set() Decorator', () => {
       }
     });
 
-    it('should return undefined on accessing the alias key with no Get() decorator', () => {
-      const o = new Test(9);
-      expect(o.exposed).not.toBeDefined();
+    it('should return the value of path while accessing the alias key', () => {
+      expect(new Test(9).exposed).toEqual(9);
     });
 
-    it('should return undefined after updating alias key with no Get() decorator', () => {
+    it('should successfully update the path value through alias key', () => {
       const o = new Test(9);
-      o.exposed = 100;
-      expect(o.exposed).not.toBeDefined();
+      o.exposed = 89;
+      expect(o.secret).toEqual(89);
     });
 
-    it('should set the value of the path', () => {
+    it('should successfully get the updated path value from the alias key', () => {
       const o = new Test(9);
-      expect(o.secret).toEqual(9);
-    });
-
-    it('should update the value of the path', () => {
-      const o = new Test(9);
-      o.exposed = 99;
-      expect(o.secret).toEqual(99);
+      o.exposed = 89;
+      expect(o.exposed).toEqual(89);
     });
   });
 
@@ -66,9 +75,11 @@ describe('Testing @Set() Decorator', () => {
     class Test {
       public readonly data = {};
 
+      @Get('data.first.second.third.fourth.fifth.sixth.seventh.secret')
       @Set('data.first.second.third.fourth.fifth.sixth.seventh.secret')
       public exposed: number;
 
+      @Get('data.notfound')
       @Set('data.notfound')
       public notfound: number;
 
@@ -95,6 +106,16 @@ describe('Testing @Set() Decorator', () => {
       }
     }
 
+    it('should throw PathNotFoundError while accessing invalid path', () => {
+      const o = new Test(9);
+      try {
+        const _ = o.notfound;
+      } catch (err) {
+        expect(err).toBeInstanceOf(Error);
+        expect(err.name).toBe('PathNotFoundError');
+      }
+    });
+
     it('should throw PathNotFoundError on updating invalid path', () => {
       const o = new Test(9);
       try {
@@ -105,30 +126,22 @@ describe('Testing @Set() Decorator', () => {
       }
     });
 
-    it('should return undefined on accessing the alias key with no Get() decorator', () => {
-      const o = new Test(9);
-      expect(o.exposed).not.toBeDefined();
+    it('should return the value of the path while accessing the alias key', () => {
+      expect(new Test(9).exposed).toEqual(9);
     });
 
-    it('should return undefined after updating alias key with no Get() decorator', () => {
+    it('should successfully update the path value through alias key', () => {
       const o = new Test(9);
-      o.exposed = 100;
-      expect(o.exposed).not.toBeDefined();
-    });
-
-    it('should set the value of the path', () => {
-      const o = new Test(9);
+      o.exposed = 89;
       expect(
         (o.data as any).first.second.third.fourth.fifth.sixth.seventh.secret,
-      ).toEqual(9);
+      ).toEqual(89);
     });
 
-    it('should update the value of the path', () => {
+    it('should successfully get the updated path value from the alias key', () => {
       const o = new Test(9);
-      o.exposed = 99;
-      expect(
-        (o.data as any).first.second.third.fourth.fifth.sixth.seventh.secret,
-      ).toEqual(99);
+      o.exposed = 89;
+      expect(o.exposed).toEqual(89);
     });
   });
 });

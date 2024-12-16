@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Get } from './get.decorator';
 
 describe('Testing @Get() Decorator', () => {
@@ -39,7 +40,7 @@ describe('Testing @Get() Decorator', () => {
       }
     });
 
-    it('should throw TypeError on trying to change the alias key with no Set() decorator', () => {
+    it('should throw TypeError on updating the alias key with no Set() decorator', () => {
       const o = new Test(9);
       try {
         o.exposed = 89;
@@ -49,7 +50,7 @@ describe('Testing @Get() Decorator', () => {
       }
     });
 
-    it('should throw TypeError on trying to change the alias key with invalid path and no Set() decorator', () => {
+    it('should throw TypeError on updating the invalid path alias key with no Set() decorator', () => {
       const o = new Test(9);
       try {
         o.notfound = 89;
@@ -59,7 +60,7 @@ describe('Testing @Get() Decorator', () => {
       }
     });
 
-    it('should not change value on trying to change the alias key with no Set() decorator', () => {
+    it('should not change the value of neither alias nor path on updating the alias key with no Set() decorator', () => {
       const o = new Test(9);
       try {
         o.exposed = 89;
@@ -69,7 +70,7 @@ describe('Testing @Get() Decorator', () => {
       }
     });
 
-    it('should return the value of original key while accessing the alias key', () => {
+    it('should return the value of path while accessing the alias key', () => {
       expect(new Test(9).exposed).toEqual(9);
     });
   });
@@ -117,7 +118,7 @@ describe('Testing @Get() Decorator', () => {
       }
     });
 
-    it('should throw TypeError on trying to change the alias key with no Set() decorator', () => {
+    it('should throw TypeError on updating the alias key with no Set() decorator', () => {
       const o = new Test(9);
       try {
         o.exposed = 89;
@@ -127,7 +128,7 @@ describe('Testing @Get() Decorator', () => {
       }
     });
 
-    it('should throw TypeError on trying to change the alias key with invalid path and no Set() decorator', () => {
+    it('should throw TypeError on updating the invalid path alias key with no Set() decorator', () => {
       const o = new Test(9);
       try {
         o.notfound = 89;
@@ -137,7 +138,7 @@ describe('Testing @Get() Decorator', () => {
       }
     });
 
-    it('should not change value on trying to change the alias key with no Set() decorator', () => {
+    it('should not change the value of neither alias nor path on updating the alias key with no Set() decorator', () => {
       const o = new Test(9);
       try {
         o.exposed = 89;
@@ -149,7 +150,7 @@ describe('Testing @Get() Decorator', () => {
       }
     });
 
-    it('should return the value of original key while accessing the alias key', () => {
+    it('should return the value of path while accessing the alias key', () => {
       expect(new Test(9).exposed).toEqual(9);
     });
   });
