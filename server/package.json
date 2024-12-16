@@ -20,7 +20,8 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "test:random": "NODE_V8_COVERAGE=coverage c8 --all -r html jest",
-    "test:random1": "c8 --all jest"
+    "test:random1": "c8 --all jest",
+    "info": "nest info"
   },
   "dependencies": {
     "@nestjs/axios": "^3.1.2",

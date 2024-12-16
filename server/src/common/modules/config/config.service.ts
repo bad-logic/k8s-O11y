@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { EnvironmentVariables, DEFAULT_CONFIGS } from './default.config';
 import { validateSync } from 'class-validator';
 import { plainToInstance } from 'class-transformer';
-import { Get } from '../decorators';
+import { Get } from '../../decorators';
 
 @Injectable()
 export class ConfigurationService {
