@@ -1,8 +1,10 @@
 import { Controller, Get } from '@nestjs/common';
 import { SystemService } from './system.service';
 import { AppLoggerService } from '../../core/logger/Applogger.service';
+import { Discoverable } from '../../common/decorators';
 
 @Controller('system')
+@Discoverable()
 export class SystemController {
   constructor(
     private systemService: SystemService,

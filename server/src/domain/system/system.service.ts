@@ -2,10 +2,12 @@
 import { Injectable } from '@nestjs/common';
 import { HealthCheck } from './system.interface';
 import { AppLoggerService } from '../../core/logger/Applogger.service';
+import { Discoverable } from '../../common/decorators';
 
 // const THRESHOLD = 150 * 1024; // 150MB
 
 @Injectable()
+@Discoverable()
 export class SystemService {
   constructor(private loggerService: AppLoggerService) {}
 
