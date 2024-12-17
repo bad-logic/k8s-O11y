@@ -5,13 +5,13 @@ import {
   LogLevel,
   Scope,
 } from '@nestjs/common';
-import { CorrelationIdService } from './correlationId.service';
+import { CorrelationId } from '../injectables/correlationId';
 import { INQUIRER } from '@nestjs/core';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class AppLoggerService extends ConsoleLogger {
   constructor(
-    private correlationIdService: CorrelationIdService,
+    private correlationId: CorrelationId,
     @Inject(INQUIRER) private parentClass: object,
   ) {
     super(parentClass?.constructor?.name, { timestamp: true });
@@ -32,6 +32,6 @@ export class AppLoggerService extends ConsoleLogger {
     const output = this.stringifyMessage(message, logLevel);
     pidMessage = this.colorize(pidMessage, logLevel);
     formattedLogLevel = this.colorize(formattedLogLevel, logLevel);
-    return `${pidMessage}${this.getTimestamp()} ${formattedLogLevel} ${contextMessage}CORRELATION_ID:${this.correlationIdService.correlationId} ${output}${timestampDiff}\n`;
+    return `${pidMessage}${this.getTimestamp()} ${formattedLogLevel} ${contextMessage}CORRELATION_ID:${this.correlationId.value} ${output}${timestampDiff}\n`;
   }
 }
