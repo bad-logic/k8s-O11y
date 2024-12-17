@@ -11,8 +11,9 @@ export class RequestLoggerMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     this.loggerService.log({
       method: req.method,
-      url: req.url,
-      headers: req.headers,
+      url: (req as any).originalUrl,
+      userAgent: (req.headers as any)['user-agent'],
+      ip: (req.headers as any)['x-forwarded-for'] || (req as any).ip,
     });
     next();
   }

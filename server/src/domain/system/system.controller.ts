@@ -11,7 +11,7 @@ export class SystemController {
     private loggerService: AppLoggerService,
   ) {}
 
-  @Get('/health')
+  @Get('health')
   check() {
     this.loggerService.log('hello from system controller');
     return this.systemService.getSystemStatus();
