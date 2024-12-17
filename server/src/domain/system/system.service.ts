@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
 import { HealthCheck } from './system.interface';
+import { AppLoggerService } from '../../core/logger/Applogger.service';
 
 // const THRESHOLD = 150 * 1024; // 150MB
 
 @Injectable()
 export class SystemService {
-  constructor() {}
+  constructor(private loggerService: AppLoggerService) {}
 
   /**
    * Executes process.uptime
@@ -57,6 +59,7 @@ export class SystemService {
    * @returns HealthCheckResult
    */
   public async getSystemStatus(): Promise<HealthCheck> {
+    this.loggerService.log('getting the system status');
     const result = await Promise.allSettled([
       this.getServerStatus(),
       this.getMemoryUsage(),

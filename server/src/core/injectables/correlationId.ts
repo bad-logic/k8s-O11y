@@ -1,5 +1,5 @@
 import { Injectable, Scope } from '@nestjs/common';
-import { Alias } from '../../decorators';
+import { Alias } from '../../common/decorators';
 
 @Injectable({ scope: Scope.REQUEST })
 export class CorrelationId {

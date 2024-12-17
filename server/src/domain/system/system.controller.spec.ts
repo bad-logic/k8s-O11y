@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { SystemController } from './system.controller';
 import { SystemService } from './system.service';
-import { AppLoggerService } from '../../common/modules/logger/Applogger.service';
+import { AppLoggerService } from '../../core/logger/Applogger.service';
 
 describe('HealthController', () => {
   let systemController: SystemController;
