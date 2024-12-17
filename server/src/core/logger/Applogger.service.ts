@@ -5,10 +5,12 @@ import {
   LogLevel,
   Scope,
 } from '@nestjs/common';
-import { CorrelationId } from '../injectables/correlationId';
+import { CorrelationId } from '../injectable/correlationId';
 import { INQUIRER } from '@nestjs/core';
+import { Discoverable } from '../../common/decorators';
 
 @Injectable({ scope: Scope.TRANSIENT })
+@Discoverable()
 export class AppLoggerService extends ConsoleLogger {
   constructor(
     private correlationId: CorrelationId,

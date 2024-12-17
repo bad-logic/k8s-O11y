@@ -3,13 +3,18 @@ import { EnvironmentVariables, DEFAULT_CONFIGS } from './default.config';
 import { validateSync } from 'class-validator';
 import { plainToInstance } from 'class-transformer';
 import { Get } from '../../common/decorators';
+import { Discoverable } from '../../common/decorators';
 
 @Injectable()
+@Discoverable()
 export class ConfigurationService {
   private config: EnvironmentVariables;
 
   @Get('config.port')
   public readonly port: number;
+
+  @Get('config')
+  public readonly vars: EnvironmentVariables;
 
   // public get port() {
   //   return this.config.port;
