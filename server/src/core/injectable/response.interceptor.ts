@@ -5,10 +5,12 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import { Observable, tap } from 'rxjs';
+import { Discoverable } from '../../common/decorators';
 
 // Aspect oriented programming
 
 @Injectable()
+@Discoverable()
 export class WrapResponseInterceptor implements NestInterceptor {
   intercept(
     context: ExecutionContext,
